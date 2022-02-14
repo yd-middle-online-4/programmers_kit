@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import Customer from './components/Customer'
+import Customer from './components/Customer';
 import './App.css';
+import CustomerAdd from './components/CustomerAdd';
 import { Table } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
 import { TableHead } from '@material-ui/core/';
 import { TableBody } from '@material-ui/core/';
 import { TableRow } from '@material-ui/core';
 import { TableCell } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 
 const styles = theme => ({
@@ -16,39 +18,41 @@ const styles = theme => ({
   },
   table: {
     minWidth: 1080
+  },
+  progress: {
+    width: '100%'
   }
-})
+});
 
-const customers = [
-  {
-  'id': '1',
-  'image': 'https://placeimg.com/64/64/1',
-  'name': '강민승',
-  'birthday': '960615',
-  'gender': '남자',
-  'job': '음악 프로듀서'
-  },
-  {
-  'id': '2',
-  'image': 'https://placeimg.com/64/64/2',
-  'name': '최선후',
-  'birthday': '960314',
-  'gender': '남자',
-  'job': '대학생'
-  },
-  {
-  'id': '3',
-  'image': 'https://placeimg.com/64/64/3',
-  'name': '김도경',
-  'birthday': '960930',
-  'gender': '남자',
-  'job': '음악 프로듀서'
-  }
-]
 class App extends Component {
+
+  state = {
+    customers: "",
+    completed: 0
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(this.progress, 20);
+    this.callApi()
+    .then(res => this.setState({customers: res}))
+    .catch(err => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch('api/customers');
+    const body = await response.json();
+    return body;
+  }
+
+  progres = () => {
+    const { completed } = this.state;
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1});
+  }
+
   render() {
     const { classes } = this.props;
     return (
+      <div>
         <Paper className={classes.root}>
           <Table className={classes.table}>
             <TableHead>
@@ -62,10 +66,18 @@ class App extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {customers.map(c => {return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}></Customer>)})}
+              {this.state.customers ? this.state.customers.map(c => {return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}></Customer>)
+              }): 
+              <TableRow>
+                <TableCell colSpan="6" align="center">
+                  <CircularProgress className={classes.progres} varient="determinate" value={this.state.completed}></CircularProgress>
+                </TableCell>
+              </TableRow>}
             </TableBody>
           </Table>
         </Paper>
+        <CustomerAdd/>
+      </div>
       );
     }
   }
