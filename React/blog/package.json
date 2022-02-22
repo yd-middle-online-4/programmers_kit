@@ -17,6 +17,7 @@
         "crypto": "^1.0.1",
         "crypto-browserify": "^3.12.0",
         "destroy": "^1.1.0",
+        "etag": "^1.8.1",
         "express": "^4.17.2",
         "fs": "^0.0.1-security",
         "http": "^0.0.1-security",
@@ -37,11 +38,10 @@
     "devDependencies": {
         "concurrently": "^7.0.0"
     },
-
     "browser": {
         "fs": false,
         "path": false,
         "os": false,
         "crypto": false
-      }
+    }
 }
