@@ -6,7 +6,7 @@ def value_list(list_1):
             result_value = list_test
     return result_list_value
 
-list_1 = [1,55,23,2]
+list_1 = [1,55,23,23]
 list_2 = [4,24,78,6,21]
 
 print("first value in list_1 is ",value_list(list_1))
