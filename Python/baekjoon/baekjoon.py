@@ -1,19 +1,13 @@
 import sys
 input=sys.stdin.readline
 
-n = int(input())
-
-result = 0
-for i in range(n):
-    word = input()
-    buf = {}
-    result += 1
-    for j in word:
-        if j in buf.keys():
-            if prev == j:
-                continue
-            result -= 1
-            break
-        buf[j] = True
-        prev = j
-print(result)
+def partner(a):
+    n = len(a)
+    for i in range(n-1):
+        for j in range(i+1, n):
+            print(f"{a[i]} - {a[j]}")
+    
+names = ["Tom", "Jerry", "Mike"]
+partner(names)
+name2 = ["Tom", "Jerry", "Mike", "John"]
+partner(name2)
