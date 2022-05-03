@@ -1,1 +1,0 @@
-print(np.dot(m1, m2))
