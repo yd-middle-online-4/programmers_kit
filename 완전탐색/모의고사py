@@ -1,0 +1,27 @@
+one = [1, 2, 3, 4, 5]
+two = [2, 1, 2, 3, 2, 4, 2, 5]
+three = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+students = [one, two, three]
+# result = []
+max = 0
+
+def solution(answers):
+    result = []
+    for j in range(3):
+        cnt = 0
+        for i in range(len(answers)):
+            if answers[i] == students[j][i]:
+                cnt += 1  
+        if j == 0:
+            max = cnt
+            
+            result.append(j+1)
+        elif max > cnt:
+            pass
+        elif max < cnt:
+            max = cnt
+            result = []
+            result.append(j+1)
+        else:
+            result.append(j+1)  
+    return result
