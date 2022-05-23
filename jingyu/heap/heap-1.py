@@ -13,4 +13,4 @@ def solution(scoville, K):
             cnt += 1
     return cnt
 
-print(solution([1, 1, 1], 2))
+print(solution([1,5,6,677,247], 320))

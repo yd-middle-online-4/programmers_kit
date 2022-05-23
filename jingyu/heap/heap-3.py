@@ -5,7 +5,7 @@ def solution(operations):
     for i in range(len(operations)):
         if operations[i].startswith('I'):
             a = operations[i].split()
-            h.heappush(lst,a[1])
+            h.heappush(lst,int(a[1]))
         else:
             a = operations[i].split()
             if len(lst) != 0:

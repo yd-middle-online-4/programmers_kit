@@ -4,7 +4,7 @@ def solution(jobs):
     answer, now, i = 0,0,0
     start = -1
     heap = []
-    
+ 
     while i < len(jobs):
         # 현재 시점에서 처리 가능한 작업 heap에 저장
         for j in jobs:
