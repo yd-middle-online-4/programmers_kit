@@ -17,8 +17,6 @@ def prime_list(n):
 
 def solution(numbers):
     num_list = sorted(list(numbers), reverse=True)
-    
-    new_num = []
     answer = []
     real_answer = []
     for i in range(1, len(num_list)+1):
@@ -26,7 +24,7 @@ def solution(numbers):
         for j in range(len(lst)):
             if lst[j][0] != '0':
                 answer.append(int(''.join(lst[j])))
-    answer.sort()
+    answer.sort() 
     primes = prime_list(answer[-1])
     for i in range(len(answer)):
         if answer[i] in primes:
