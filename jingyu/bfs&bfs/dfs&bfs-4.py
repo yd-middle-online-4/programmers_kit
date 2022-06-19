@@ -66,5 +66,3 @@ print(solution([["ICN", "AOO"], ["AOO", "BOO"], ["BOO", "COO"], ["COO", "DOO"], 
 #                 break
 
 #     return answer
-
-
