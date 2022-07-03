@@ -25,6 +25,6 @@ def solution(s):
         answer.append(len(result))
         result = ''
             
-    return answer
+    return min(answer)
 
 print(solution('aabbaccc'))
